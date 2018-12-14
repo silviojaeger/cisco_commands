@@ -23,7 +23,7 @@ conf t
 interface range f0/13-xx					#Interface oder range angeben
 switchport mode trunk						# Mehrere VLAN an einem Anschluss, mit "no" zurücksetzen
 switchport trunk native vlan 99				# mit "no" zurücksetzen
-switchport trunk allowed vlan 10,20,30,99
+switchport trunk allowed vlan 10,20,30,99	# keine abstände zwischen Zahlen und Kommas!
 
 	# Show Befehle
 show vlan brief
@@ -41,5 +41,4 @@ encapsulation dot1q XX -VLAN Nummer
 encapsulation dot1q XX native  				- VLAN ist jetzt native (muss zuerst drauf sein)
 ip address XXX.XXX.XXX.XXX XXX.XXX.XXX.XXX
 
-------------------------------------------------------------------------------------------------------
-switchport mode access
+-------------------------------------------------------------------------------------------------

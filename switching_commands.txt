@@ -1,6 +1,6 @@
-=========================
-#	SWITCHING & VLAN	#
-=========================
+=================
+#	SWITCHING 	#
+=================
 
 Basic
 =====
@@ -29,7 +29,7 @@ switchport port-security										# Aktiviert Port SECURITY
 switchport port-security mac-address AB:CD:EF:GH:IJ:KL			# Statische MAC an Port hinterlegen	
 switchport port-security mac-address sticky						# Alle dyn. erlernten zu Sticky-sicheren Adressen abspeichern
 switchport port-security maximum 10								# Anzahl sichere host pro port
-switchport port-security violation {protect|restrict|shutdown}	# Port violation definieren
+switchport port-security violation {protect|restrict|shutdown}	# Port violation definieren, shutdown: port disable, protect: ohne benachrichtigunh ,restrict: mit benachrichtigung
 
 
 SSH
@@ -44,6 +44,8 @@ transport input ssh
 login local
 exit
 ip ssh version 2
+ip ssh time-out 90 authentication-retries 2
+ip ssh authentication-retries 2
 end
 
 	# Show Befehle
