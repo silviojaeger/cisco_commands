@@ -1,0 +1,4 @@
+BASIC COMMANDS
+==============
+
+ip addr dhcp 	#Port als DHCP client

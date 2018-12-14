@@ -1,0 +1,51 @@
+=========================
+#	SWITCHING & VLAN	#
+=========================
+
+Basic
+=====
+interface vlan 99
+ip address 192.168.1.2 255.255.255.0
+no shutdown
+exit
+
+ip default gateway 192.168.1.1
+
+interface fO/1
+duplex full
+speed 100
+duplex auto
+speed auto
+mdix auto
+interface range f0/1-24, g0/1-2					# Ein Range von Ports gleichzeitig konfigurieren (z.B. shutdown)
+
+
+SWITCH PORT SECURITY
+====================
+interface range f0/1-18, g0/1-2									#zuerst Port oder range angeben
+
+switchport mode access											# Port in access mode setzen
+switchport port-security										# Aktiviert Port SECURITY
+switchport port-security mac-address AB:CD:EF:GH:IJ:KL			# Statische MAC an Port hinterlegen	
+switchport port-security mac-address sticky						# Alle dyn. erlernten zu Sticky-sicheren Adressen abspeichern
+switchport port-security maximum 10								# Anzahl sichere host pro port
+switchport port-security violation {protect|restrict|shutdown}	# Port violation definieren
+
+
+SSH
+===
+conf t
+ip domain-name cisco.com
+crypto key generate rsa 
+1024
+username admin secret ccna
+line vty 0 4
+transport input ssh
+login local
+exit
+ip ssh version 2
+end
+
+	# Show Befehle
+show interfaces f0/14						# Zeigt auch Errors und CRC-Erkennungen an
+show port-security interface f0/17			# Zeigt Port Security an

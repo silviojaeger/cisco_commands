@@ -1,0 +1,37 @@
+=================
+#	 Routing	#
+=================
+
+
+Static Routing (static route)
+=============================
+
+	ip route "Ziel_Netz" "Ziel_Subnetzmask" "OUT_Interface" und/oder "Next Hop IP"  - ip route 172.16.1.0 255.255.255.0 g0/1 172.16.1.1
+	ip route 0.0.0.0 0.0.0.0 "anschluss" "Administrativ Distance(optional)" - Default route, ip route 0.0.0.0 0.0.0.0 s0/0/1 5
+
+	Static Routing (static route) ipv6
+	==================================
+	ip route Ziel_Netz OUT_Interface/Next Hop IP- ipv6 route 2001:545:4545:6546::1 s0/0/1
+	ipv6 route ::0/0 nextHopAdresse - Default route, ipv6 route ::0/0 2001:DB8:A:2::1
+
+
+
+RIPv2 routing (dynamisches Routing)
+===================================
+	router rip
+	version 2
+	passive-interface g0/1 	-Das interface an dem keine Router mer hängen (optional)
+	network 172.30.0.0
+	network 10.0.0.0
+	no auto-summary			-disable the summarization of networks(optional)
+	end
+	clear ip route  -löschen der routing tabelle
+	show ip route 	-Routing Tabelle anzeigen
+
+
+	default-information originate    //wenn zusätzlich standart route hinzugefügt wird, propagiert standartroute im netzwerk
+
+	RIPv2 routing ipv6
+	=============
+	interface g0/1
+	ipv6 rip Name enable

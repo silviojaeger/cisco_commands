@@ -1,0 +1,41 @@
+NAT und PAT
+===========
+
+Static NAT
+===
+ip nat inside source static "private inside IP" "public address"
+interface g0/1
+ ip nat inside
+interface s0/0/1
+ ip nat outside
+ 
+Dynamic NAT
+===========
+access-list 1 permit "192.168.1.0" "0.0.0.255"
+ip nat pool public_access 209.165.200.242 209.165.200.254 netmask 255.255.255.224	#pool von IPs definieren
+ip nat inside source list 1 pool public_access
+
+
+
+PAT
+===
+access-list 1 permit "192.168.1.0" "0.0.0.255"
+ip nat pool "public_access" 209.165.200.225 209.165.200.230 netmask 255.255.255.248
+
+ip nat inside source list 1 pool "public_access" overload		#option mit IP pool
+ip nat inside source list 1 interface serial 0/0/1 overload		#option mit einem einzigen Interface
+
+interface g0/1
+ip nat inside
+interface s0/0/1
+ip nat outside
+
+Clear NAT
+=========
+clear ip nat translation *
+clear ip nat statistics
+
+shows
+=====
+show ip nat statistics
+show ip nat translations
