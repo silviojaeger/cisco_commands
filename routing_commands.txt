@@ -29,7 +29,7 @@ RIPv2 routing (dynamisches Routing)
 	show ip route 	-Routing Tabelle anzeigen
 
 
-	default-information originate    //wenn zusätzlich standart route hinzugefügt wird, propagiert standartroute im netzwerk
+	default-information originate    //wenn zusätzlich static/default route hinzugefügt wird, propagiert standartroute im netzwerk
 
 	RIPv2 routing ipv6
 	=============

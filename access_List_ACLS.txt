@@ -1,0 +1,89 @@
+===================
+#	ACCESS-List	  #
+===================
+
+Configure ACCESS-List 
+=====================
+!--- 255.255.255.255 entspricht any
+!--- 0.0.0.0 entspricht 		host
+
+conf t
+access-list 1 remark Allow R1 LANs Access
+access-list 1 permit 192.168.10.0 0.0.0.255
+access-list 1 permit 192.168.20.0 0.0.0.255
+access-list 1 deny any
+end
+
+Apply ACCESS-List 
+=================
+conf t
+interface g0/1
+ip access-group 1 out
+end
+
+
+Configure a named ACCESS-List 
+=============================
+conf t
+ip access-list standard BRANCH-OFFICE-POLICY
+permit host 192.168.30.3
+permit 192.168.40.0 0.0.0.255
+end
+
+Apply a named ACCESS-List 
+=========================
+conf t
+interface g0/1
+ip access-group BRANCH-OFFICE-POLICY out
+end
+
+Modify a named standard ACCESS-LIST
+===================================
+conf t
+ip access-list standard BRANCH-OFFICE-POLICY
+30 permit 209.165.200.224 0.0.0.31
+40 deny any
+end
+
+
+Secure VTY lines
+================
+conf t
+line vty 0 4
+login local
+transport input ssh
+access-class 21 in
+exit
+access-list 21 permit 192.168.10.0 0.0.0.255
+access list 21 deny any
+exit
+end
+
+remove a sequence inside a ACL
+===============================
+no 1
+no 10
+no etc...
+
+REMOVE ACCESS-LIST from specifig interface
+==========================================
+conf t
+interface s0/0/0
+no ip access-group 11 out
+end
+
+REMOVE ACCESS-List from all Interfaces
+======================================
+conf t
+no access-list 11
+end
+
+show running-config 								        show all ACLs in running-config
+show running-config | include access-list NAME_DER_ACCESS_LIST
+show access-lists ?									show available ptions
+show access-lists 									show all ACLs
+
+
+
+
+
