@@ -2,7 +2,32 @@
 #	ACCESS-List	  #
 ===================
 
-Configure ACCESS-List 
+Configure a named ACCESS-List 
+=============================
+conf t
+ip access-list standard "NAME"
+permit host 192.168.30.3		-einen expliziten Host zulassen
+permit 192.168.40.0 0.0.0.255	-IP Range zulassen (wildcard)
+deny 192.168.40.0 0.0.0.255		-nicht zulassen
+permit any						-alle anderen zulassen
+end
+
+Apply a named ACCESS-List 
+=========================
+conf t
+interface g0/1
+ip access-group BRANCH-OFFICE-POLICY out  -ACL auf Ausgang, mit "in" auf Eingang
+end
+
+Modify a named standard ACCESS-LIST
+===================================
+conf t
+ip access-list standard BRANCH-OFFICE-POLICY
+30 permit 209.165.200.224 0.0.0.31
+40 deny any
+end
+---------------------------------------------------------------------
+Configure ACCESS-List (not named)
 =====================
 !--- 255.255.255.255 entspricht any
 !--- 0.0.0.0 entspricht 		host
@@ -20,32 +45,7 @@ conf t
 interface g0/1
 ip access-group 1 out
 end
-
-
-Configure a named ACCESS-List 
-=============================
-conf t
-ip access-list standard BRANCH-OFFICE-POLICY
-permit host 192.168.30.3
-permit 192.168.40.0 0.0.0.255
-end
-
-Apply a named ACCESS-List 
-=========================
-conf t
-interface g0/1
-ip access-group BRANCH-OFFICE-POLICY out
-end
-
-Modify a named standard ACCESS-LIST
-===================================
-conf t
-ip access-list standard BRANCH-OFFICE-POLICY
-30 permit 209.165.200.224 0.0.0.31
-40 deny any
-end
-
-
+---------------------------------------------------------------------
 Secure VTY lines
 ================
 conf t
