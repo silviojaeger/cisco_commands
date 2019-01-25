@@ -44,9 +44,12 @@ transport input ssh
 login local
 exit
 ip ssh version 2
-ip ssh time-out 90 authentication-retries 2
+ip ssh time-out 90
 ip ssh authentication-retries 2
 end
+
+conf t
+service password-encryption  -Passwörter nicht plain text
 
 	# Show Befehle
 show interfaces f0/14						# Zeigt auch Errors und CRC-Erkennungen an

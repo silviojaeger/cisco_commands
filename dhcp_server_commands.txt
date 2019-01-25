@@ -1,26 +1,32 @@
-DHCP Server
-===========
+=============
+#	DHCP	#
+=============
+
+DHCP Pool erstellen
+===================
+ip dhcp pool "POOL_NAME"
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1			-Pool zu Router Adresse zuweisen
+dns-server 209.165.200.225
+domain-name ccna-lab.com
+lease 2						-Anzahl Tage der Gültigkeit der Adressen
+exit
+
+Adressen aussschliessen
+=======================
+ip dhcp excluded-address "start_addr" "end_addr"		-ip dhcp excluded-address 192.168.0.1 192.168.0.9
+
+Router als DHCP-Client
+======================
+interface g0/1
+ip address dhcp
+no shutdown
+show ip interface g0/1   -show config
 
 
-//erst koppiert....noch ausarbeiten
-R2(config)# ip dhcp excluded-address 192.168.0.1 192.168.0.9
-R2(config)# ip dhcp excluded-address 192.168.1.1 192.168.1.9
-R2(config)# ip dhcp pool R1G1
-R2(dhcp-config)# network 192.168.1.0 255.255.255.0
-R2(dhcp-config)# default-router 192.168.1.1
-R2(dhcp-config)# dns-server 209.165.200.225
-R2(dhcp-config)# domain-name ccna-lab.com
-R2(dhcp-config)# lease 2
-R2(dhcp-config)# exit
-
-R2(config)# ip dhcp pool R1G0
-R2(dhcp-config)# network 192.168.0.0 255.255.255.0
-R2(dhcp-config)# default-router 192.168.0.1
-R2(dhcp-config)# dns-server 209.165.200.225
-R2(dhcp-config)# domain-name ccna-lab.com
-R2(dhcp-config)# lease 2
-
-DHCP Relay
+DHCP Relay	-Router leitet standardmässig keine dhcp anfragen weiter, als relay schon
 ==========
 interface g0/0
-ip helper-address "DHCP_Server_IP"	
+ip helper-address "DHCP_Server_IP"
+end
+show ip interface g0/0	

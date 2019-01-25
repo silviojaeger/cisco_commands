@@ -10,14 +10,14 @@ name Student								# VLAN benennen
 no vlan 20									# VLAN löschen --> Zuvor alle Ports anderen VLANs zuweisen
 end
 
-SWITCH - Access
+SWITCH - Access		-für die Ports Clients
 ================
 interface f0/1
 switchport mode access						# Port in VLAN Modus setzen
 switchport access vlan 10					# Port an VLAN 10 zuweisen
 no switchport access vlan					# Port von VLAN entfernen
 	
-SWITCH - Trunk
+SWITCH - Trunk	-Mehrere VLAN über eine Leitung
 ==============
 conf t
 interface range f0/13-xx					#Interface oder range angeben

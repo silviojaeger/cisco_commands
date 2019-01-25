@@ -2,7 +2,7 @@ NAT und PAT
 ===========
 
 Static NAT
-===
+==========
 ip nat inside source static "private inside IP" "public address"
 interface g0/1
  ip nat inside
