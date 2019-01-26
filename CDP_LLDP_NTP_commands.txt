@@ -1,0 +1,111 @@
+===================
+# CDP,LLDP & NTP  #		#Informationen angeschlossener Geräte erhalten und Uhren synchronisieren
+===================
+
+CDP (Cisco Devices)
+===================
+conf t
+cdp run			#enable cdp for all ports
+no cdp run		#disable cdp for all ports
+end
+
+conf t
+interface G0/1
+cdp enable		#enable cdp on this port
+no cdp enable	#disable cdp on this port
+
+show cdp
+show cdp interface			#shows interfaces with CDP enabled
+show cdp neighbors
+show cdp neighbors detail
+
+LLDP (All Devices)
+==================
+conf t
+lldp run		#enable lldp for all ports
+no lldp run		#disable lldp for all ports
+
+interface G0/1
+lldp transmit	#send lldp infromation on this port
+lldp receive	#receive lldp information on this port
+no lldp run		#disable lldp on this port
+
+show lldp
+show lldp neighbors
+show lldp neighbors detail
+
+
+NTP (Network Time Protocoll)
+============================
+Clock manuell
+=============
+conf t
+clock set 20:36:00 dec 11 2018	#set time manually (not NTP)
+
+show clock
+show clock detail
+
+NTP
+===
+conf t
+ntp server "SERVER_IP"
+
+show ntp associations 
+show ntp status
+
+Syslog
+======
+conf t
+service timestamps log datetime 	#syslog meldungen mit Zeitspempel versehen
+
+logging "SYSLOG_SERVER_IP"			#Syslog an Server senden
+logging trap "4"					#(0-4) Welche Nachrichten sollen an Server gesendet werden (4 niedrigste Stufe)
+logging source-interface "G0/1"		#Quellschnittstelle Festlegen
+
+logging consoleace 
+logging buffered
+show logging
+show logging | include "meinText"	#logging pypen und mit Text filtern
+show logging | begin "Jun 12 22:30"	#logging pypen und bestimmtem Anfang der Zeile filtern
+
+Router Filesystem (Backup and Restor)
+=====================================
+
+show file systems		#zeigt freien Speicherplatz etc
+dir						#listet Inhalt Verzeichniss auf
+cd "FOLDER"				#Change Directory
+pwd						#Print working directory
+
+copy running-config tftp	#Running-config auf tftp Server speichern
+copy startup-config tftp 	#Startup-config auf tftp Server speichern
+copy tftp running-config	#Running-config von tftp Server abrufen
+copy tftp startup-config	#Startup-config von tftp Server abrufen
+
+copy running-config "usbflash0:"			#config auf usb speichern
+copy "usbflash0:/meinConfig" running-config	#config von usb abrufen
+
+copy "flash0:" tftp:			#Datei (z.B. IOS-Abbild) von Gerät auf tftp koppieren
+
+Router mit neuem IOS Booten
+===========================
+conf t
+boot system flash0://c1900-universalk9-mz.SPA.152-4.M3.bin		#Datei zum Booten angeben
+exit
+copy running-config startup-config	
+reload												#Router Neustarten
+
+show version										#aktuelle IOS Version anzeigen
+
+
+passwort widerherstellen
+========================
+confreg 0x2142
+
+????????????????Silvan???????????????
+
+
+
+
+
+
+
