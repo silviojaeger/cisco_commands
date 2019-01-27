@@ -1,0 +1,75 @@
+=====================
+#	VLAN & VTP/DTP	#
+=====================
+
+SWITCH
+======
+
+vlan 10										# VLAN erstellen
+name Student								# VLAN benennen
+no vlan 20									# VLAN löschen --> Zuvor alle Ports anderen VLANs zuweisen
+end
+
+SWITCH - Access		-für die Ports Clients
+================
+interface f0/1
+switchport mode access						# Port in VLAN Modus setzen
+switchport access vlan 10					# Port an VLAN 10 zuweisen
+no switchport access vlan					# Port von VLAN entfernen
+	
+SWITCH - Trunk	-Mehrere VLAN über eine Leitung
+==============
+conf t
+interface range f0/13-xx					#Interface oder range angeben
+switchport mode trunk						# Mehrere VLAN an einem Anschluss, mit "no" zurücksetzen
+switchport trunk native vlan 99				# mit "no" zurücksetzen
+switchport trunk allowed vlan 10,20,30,99
+
+	# Show Befehle
+show vlan brief
+show vlan name student						# Zeigt VLAN mit dem Namen "Student"
+show interfaces f0/18 switchport
+show interfaces vlan 20
+show vlan summary
+
+
+Router on a Stick Inter VLAN
+============================
+interface g0/0.XX 							-Nummer egal, am besten wie VLAN Nummer
+description "Sales VLAN"					-Namen zuweisen
+encapsulation dot1q XX -VLAN Nummer
+encapsulation dot1q XX native  				- VLAN ist jetzt native (muss zuerst drauf sein)
+ip address XXX.XXX.XXX.XXX XXX.XXX.XXX.XXX
+
+---------------------------------------------------------------------------------------------------------------
+
+VTP (VLAN Server zum austauschen von VLAN informationen)
+========================================================
+conf t
+vtp mode ?				#zeigt verschiedene vtp modes des Gerätes an
+
+vtp mode server			#vtp server konfigurieren
+vtp domain "CCNA"		#setzt Domain name für VTP
+vtp password "cisco"	#passwort für vtp setzen
+
+vtp mode client			#vtp client konfigurieren
+vtp domain "CCNA"
+vtp password "cisco"
+
+show vtp status
+show vtp password
+
+show vlan brief
+show vlan summary
+
+DTP (Interfaces automatisch in Trunk/Access Mode setzen (Cisco only))
+=====================================================================
+switchport mode access
+switchport mode trunk
+switchport mode dynamic auto		#Interface kann zustand trunk oder access annehmen (standart)
+switchport mode dynamic desirable	#Interface versucht trunk zu werden (geht, falls anderes ende Trunk oder desirable oder auto)
+switchport nonegotiate				#deaktiviert DTP auf diesem Interface (für nicht cisco devices)
+
+show dtp interface G0/1				#geht nicht je nach version
+show interfaces trunk
+
