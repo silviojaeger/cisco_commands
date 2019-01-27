@@ -49,8 +49,8 @@ ip ssh authentication-retries 2
 end
 
 conf t
-service password-encryption  -Passwörter nicht plain text
+service password-encryption  				# Passwörter nicht plain text
 
-	# Show Befehle
+
 show interfaces f0/14						# Zeigt auch Errors und CRC-Erkennungen an
 show port-security interface f0/17			# Zeigt Port Security an
