@@ -24,9 +24,10 @@ no shutdown
 show ip interface g0/1   -show config
 
 
-DHCP Relay	-Router leitet standardmässig keine dhcp anfragen weiter, als relay schon
+DHCP Relay	-Router leitet standardmässig keine dhcp anfragen weiter, als relay schon (Wen ein anderer Router DHCP Server ist)
 ==========
-interface g0/0
-ip helper-address "DHCP_Server_IP"
+interface g0/0						#Eingang auf dem die DCHP Anfrage erwartet wird
+ip helper-address "DHCP_Server_IP"	#IP des DHCP Servers, auf den weitergeleitet werden soll
 end
-show ip interface g0/0	
+
+show ip interface g0/0

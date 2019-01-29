@@ -11,10 +11,9 @@ interface s0/0/1
  
 Dynamic NAT
 ===========
-access-list 1 permit "192.168.1.0" "0.0.0.255"
+access-list "1" permit "192.168.1.0" "0.0.0.255"
 ip nat pool public_access 209.165.200.242 209.165.200.254 netmask 255.255.255.224	#pool von IPs definieren
-ip nat inside source list 1 pool public_access
-
+ip nat inside source list "1" pool public_access
 
 
 PAT
