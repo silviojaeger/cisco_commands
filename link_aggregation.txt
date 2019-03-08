@@ -1,0 +1,52 @@
+===========================
+#	Link Aggregation	  #		#Mehrere Links zu einem Channel zusammenfassen
+===========================
+
+interface range f0/3-4
+channel-group "1" mode "desirable" 	#PAgP: desirable--auto, LACP: active--passive, Kein-Protokoll: on
+
+interface port-channel 1
+switchport mode trunk
+switchport trunk native vlan 99
+
+
+LOAD BALANCING
+==============
+port-channel load-balance "type" 
+
+
+show etherchannel summary
+show etherchannel load-balance
+show run interface f0/3
+show interfaces f0/3 switchport
+
+
+HSRP - First Hop Redundancy
+===========================
+
+interface g0/1
+standby version 2
+standby 1 ip 192.168.1.254
+standby 1 priority 150
+standby 1 preempt
+
+interface g0/1
+standby version 2
+standby 1 ip 192.168.1.254
+
+show standby
+show standby brief
+show standby brief
+
+
+
+
+
+
+
+
+
+
+
+
+
