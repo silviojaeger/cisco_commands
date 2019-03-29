@@ -1,0 +1,43 @@
+conf t
+router eigrp "AS Number"
+network 10.2.2.0 0.0.0.3
+network 192.168.3.0 0.0.0.255
+network 10.3.3.0 0.0.0.3
+end
+
+
+
+show ip eigrp neighbors
+show ip route eigrp
+show ip eigrp topology
+show ip protocols
+
+!Configure Bandwith and Passive Iterfaces
+
+conf t
+interface s0/0/0
+bandwidth 2000
+end
+
+
+conf t
+router eigrp "AS Number"
+passive-interface g0/0
+
+
+show interface s0/0/0
+
+
+
+!DUAL FSM
+
+
+
+
+
+
+
+
+
+
+debug eigrp fsm
