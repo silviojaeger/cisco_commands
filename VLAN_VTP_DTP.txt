@@ -17,7 +17,7 @@ switchport mode access						# Port in VLAN Modus setzen
 switchport access vlan 10					# Port an VLAN 10 zuweisen
 no switchport access vlan					# Port von VLAN entfernen
 	
-SWITCH - Trunk	-Mehrere VLAN über eine Leitung
+SWITCH - Trunk		-Mehrere VLAN über eine Leitung
 ==============
 conf t
 interface range f0/13-xx					#Interface oder range angeben
@@ -48,7 +48,7 @@ VTP (VLAN Server zum austauschen von VLAN informationen)
 conf t
 vtp mode ?				#zeigt verschiedene vtp modes des Gerätes an
 
-vtp mode server			#vtp server konfigurieren
+vtp mode server			#vtp server konfigurieren (server/client/transparent)
 vtp domain "CCNA"		#setzt Domain name für VTP
 vtp password "cisco"	#passwort für vtp setzen
 

@@ -1,6 +1,6 @@
-===========================
-#	Link Aggregation	  #		#Mehrere Links zu einem Channel zusammenfassen
-===========================
+=======================================
+#	Link Aggregation (Etherchannel)	  #		#Mehrere Links zu einem Channel zusammenfassen
+=======================================
 
 interface range f0/3-4
 channel-group "1" mode "desirable" 	#PAgP: desirable--auto, LACP: active--passive, Kein-Protokoll: on
@@ -20,9 +20,9 @@ show etherchannel load-balance
 show run interface f0/3
 show interfaces f0/3 switchport
 
-
-HSRP - First Hop Redundancy
-===========================
+=====================================
+#	HSRP - First Hop Redundancy		#
+=====================================
 
 interface g0/1
 standby version 2
