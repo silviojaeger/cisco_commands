@@ -54,3 +54,25 @@ service password-encryption  				# Passwörter nicht plain text
 
 show interfaces f0/14						# Zeigt auch Errors und CRC-Erkennungen an
 show port-security interface f0/17			# Zeigt Port Security an
+
+
+show dtp interface G0/1				#geht nicht je nach version
+show interfaces trunk
+show interfaces G0/2 switchport		
+
+
+
+Layer 3 Switching
+=================
+interface Vlan 10							#Switch Virtual Interface (SVI) aktivieren
+ip address "192.168.10.254" "255.255.255.0"	#IP zuweisen
+
+ip routing									#routing zwischen VLANs auf dem switch aktivieren
+
+interface G0/1
+no switchport								#Auf Ports zu Layer 3 (Distribution aufwärts)
+ip address XXX.XXX.XXX.XXX
+
+show ip route
+
+

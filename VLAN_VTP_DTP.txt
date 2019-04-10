@@ -70,24 +70,3 @@ switchport mode dynamic auto		#Interface kann zustand trunk oder access annehmen
 switchport mode dynamic desirable	#Interface versucht trunk zu werden (geht, falls anderes ende Trunk oder desirable oder auto)
 switchport nonegotiate				#deaktiviert DTP auf diesem Interface (für nicht cisco devices)
 
-show dtp interface G0/1				#geht nicht je nach version
-show interfaces trunk
-show interfaces G0/2 switchport		
-
-
-Layer 3 Switching
-=================
-interface Vlan 10							#Switch Virtual Interface aktivieren
-ip address "192.168.10.254" "255.255.255.0"	#IP zuweisen
-
-show ip route
-ip routing									#routing zwischen VLANs auf dem switch aktivieren
-
-interface G0/1
-no switchport								#nur auf interface zum Internet (quasi WAN Anschluss)
-ip address XXX.XXX.XXX.XXX
-
-
-
-
-
