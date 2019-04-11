@@ -69,4 +69,3 @@ switchport mode trunk
 switchport mode dynamic auto		#Interface kann zustand trunk oder access annehmen (standart)
 switchport mode dynamic desirable	#Interface versucht trunk zu werden (geht, falls anderes ende Trunk oder desirable oder auto)
 switchport nonegotiate				#deaktiviert DTP auf diesem Interface (für nicht cisco devices)
-

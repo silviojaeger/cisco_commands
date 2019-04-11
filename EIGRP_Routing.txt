@@ -1,43 +1,27 @@
+=======================
+#	EIGRP Routing	  #
+=======================
+
 conf t
-router eigrp "AS Number"
-network 10.2.2.0 0.0.0.3
+router eigrp 1				#router eigrp "AS Number" (1 – 65,535)
+network 10.2.2.0 0.0.0.3		
 network 192.168.3.0 0.0.0.255
 network 10.3.3.0 0.0.0.3
+passive-interface "g0/0"	#(optional) passives interface, propagiert keine EIGRP updates
+no auto-summary				# verhindert loops wen mehrere netze in gleicher range
 end
-
-
-
-show ip eigrp neighbors
-show ip route eigrp
-show ip eigrp topology
-show ip protocols
-
-!Configure Bandwith and Passive Iterfaces
 
 conf t
 interface s0/0/0
-bandwidth 2000
+bandwidth 2000				#beeinflusst metrik, 1 Gbit/s = 1000
 end
 
 
-conf t
-router eigrp "AS Number"
-passive-interface g0/0
-
-
-show interface s0/0/0
-
-
-
-!DUAL FSM
-
-
-
-
-
-
-
-
-
+show ip route 				#zeigt alle direkt angeschlossenen netzwerke --> diese dann in eigrp aufnehmen
+show ip route eigrp
+show ip eigrp neighbors
+show ip eigrp topology
+show ip protocols
+show interface "s0/0/0"
 
 debug eigrp fsm

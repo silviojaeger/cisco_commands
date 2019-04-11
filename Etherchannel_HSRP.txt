@@ -7,7 +7,7 @@ channel-group "1" mode "desirable" 	#PAgP: desirable--auto, LACP: active--passiv
 
 interface port-channel 1
 switchport mode trunk
-switchport trunk native vlan 99
+switchport trunk native vlan 99		#WICHTIG! muss angegeben werden
 
 
 LOAD BALANCING
