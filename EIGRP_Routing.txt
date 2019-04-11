@@ -11,6 +11,10 @@ passive-interface "g0/0"	#(optional) passives interface, propagiert keine EIGRP 
 no auto-summary				# verhindert loops wen mehrere netze in gleicher range
 end
 
+ip route 0.0.0.0 0.0.0.0 s0/0/0		#
+router eigrp 1						#	STATIC Route
+redestribute static					#
+
 conf t
 interface s0/0/0
 bandwidth 2000				#beeinflusst metrik, 1 Gbit/s = 1000
