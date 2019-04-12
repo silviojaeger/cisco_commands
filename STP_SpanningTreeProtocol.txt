@@ -2,7 +2,6 @@
 !PVST+ ist ausgelegt für max 7 switches, weil timerbasiert (überschüssige switches haben nach ablauf der Zeit das gefühl sie seien richtig konfigurert)
 !Problem lässt sich mit einem Switchstack lösen
 
-
 !Problems
 show spanning-tree
 
@@ -10,19 +9,14 @@ conf t
 debug spanning-tree events
 exit
 
-
-
-
 !Costs --> BID --> Port priorty
  
-
-! Change Port cost, on the rooot bridge port
+! Change Port cost, on the root bridge port
 configure terminal
 interface f0/2
 spanning-tree cost 18
 exit
 exit
-
 
 !BPDU Guard auf Endgerätports
 cont t
@@ -30,7 +24,7 @@ interface f0/1
 spanning-tree bpduguard enable
 end
 
-!Globally configure all non-trunking ports on the switch with bpduguard
+!Globally configure all non-trunking ports on the switch with bpduguard (Für Access Ports)
 conf t
 spanning-tree bpduguard default
 end
@@ -42,20 +36,16 @@ interface f0/1
 spanning-tree portfast
 end
 
-!Globally configure all non-trunking ports on the switch with PortFast
+!Globally configure all non-trunking ports on the switch with PortFast (Für Access Ports)
 conf t
 spanning-tree portfast default
 end
 
-
-
 !Set root bridge
-!Priorität geht um 2 runter als der aktuelle root
+!Priorität geht 1 höher als der aktuelle root
 conf t
 spanning-tree vlan 1,10,99 root primary
 end
-
-
 
 !Set secundary root
 !Fals der Root ausfällt
@@ -64,12 +54,8 @@ conf t
 spanning-tree vlan 1,10,99 root secondary
 end
 
-
-
 !Rapid PVST+
 ! Configurieren auf jedem beteiligten Switch
 config t
 spanning-tree mode rapid-pvst
 exit
-
-
