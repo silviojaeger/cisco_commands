@@ -1,0 +1,8 @@
+=======================
+#	  GRE Tunnel	   #
+=======================
+
+interface tunnel 0
+ip address 172.16.12.1 255.255.255.252
+tunnel source S0/0/0
+tunnel destination 10.2.2.1
