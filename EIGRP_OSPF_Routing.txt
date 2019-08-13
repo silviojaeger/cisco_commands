@@ -36,9 +36,10 @@ debug eigrp fsm
 =====================
 
 router ospf 1							# 1 = process id
+router-id 1.1.1.1						# set router id
 network 192.168.2.0 0.0.0.255 area 0  	# achtung wildcard statt subnet mask
 
-router-id 1.1.1.1						# set router id
+passive-interface g0/0					# set passiv interface (nicht propagieren)
 
 show ip protocols
 show ip route
@@ -46,4 +47,3 @@ show ip ospf neighbor
 show ip ospf database
 
 clear ip ospf process
-
