@@ -1,15 +1,17 @@
 =======================
-#	  GRE Tunnel	   #
+#	  GRE Tunnel	  #
 =======================
 
 interface tunnel 0
-ip address 172.16.12.1 255.255.255.252
+tunnel mode gre ip
+ip address 192.168.2.2 255.255.255.0
 tunnel source S0/0/0            #port ins internet
 tunnel destination 10.2.2.1     #ip von zielport (anderer GRE Router)
 
+show ip interface brief
 
 =======================
-#	  eBGP Tunnel	   #
+#	  eBGP Tunnel	  #
 =======================
 
 router bgp 65000
