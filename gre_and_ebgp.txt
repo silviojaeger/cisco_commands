@@ -4,19 +4,22 @@
 
 interface tunnel 0
 tunnel mode gre ip
-ip address 192.168.2.2 255.255.255.0
-tunnel source S0/0/0            #port ins internet
-tunnel destination 10.2.2.1     #ip von zielport (anderer GRE Router)
+ip address 10.2.2.1 255.255.255.0	#IP of the virual interface port
+tunnel source S0/0/0            	#port ins internet
+tunnel destination 209.165.201.1    #globale ip von zielport (anderer GRE Router)
 
 show ip interface brief
+show ip interface brief | include Tunnel  # grep-ähnlicher Filter für "Tunnel"
+show interface Tunnel 0
 
 =======================
 #	  eBGP Tunnel	  #
 =======================
 
-router bgp 65000
-neighbor 209.165.200.1 remote-as 65001
-network 198.133.219.0 mask 255.255.255.248
+router bgp 65000							#as-number (unique)
+neighbor 209.165.200.1 remote-as 65001		#neighbor ip and as
+network 198.133.219.0 mask 255.255.255.248	#lokales netz das propagiert werden soll
 
+show ip route
 show ip bgp
 show ip bgp summary

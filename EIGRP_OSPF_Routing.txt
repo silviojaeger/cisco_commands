@@ -29,3 +29,21 @@ show ip protocols
 show interface "s0/0/0"
 
 debug eigrp fsm
+
+
+=====================
+#	OSPF Routing 	#
+=====================
+
+router ospf 1							# 1 = process id
+network 192.168.2.0 0.0.0.255 area 0  	# achtung wildcard statt subnet mask
+
+router-id 1.1.1.1						# set router id
+
+show ip protocols
+show ip route
+show ip ospf neighbor
+show ip ospf database
+
+clear ip ospf process
+
