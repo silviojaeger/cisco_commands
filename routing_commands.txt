@@ -7,7 +7,7 @@ Static Routing (static route)
 =============================
 
 	ip route "Ziel_Netz" "Ziel_Subnetzmask" "OUT_Interface" und/oder "Next Hop IP"  - ip route 172.16.1.0 255.255.255.0 g0/1 172.16.1.1
-	ip route 0.0.0.0 0.0.0.0 "anschluss" "Administrativ Distance(optional)" - Default route, ip route 0.0.0.0 0.0.0.0 s0/0/1 5
+	ip route 0.0.0.0 0.0.0.0 "interface" "Administrativ Distance(optional)" - Default route, ip route 0.0.0.0 0.0.0.0 s0/0/1 5
 
 	Static Routing (static route) ipv6
 	==================================

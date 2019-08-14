@@ -11,7 +11,7 @@ passive-interface "g0/0"	#(optional) passives interface, propagiert keine EIGRP 
 no auto-summary				# verhindert loops wen mehrere netze in gleicher range
 end
 
-ip route 0.0.0.0 0.0.0.0 s0/0/0		#
+ip route 0.0.0.0 0.0.0.0 s0/0/0		#	(default static route)
 router eigrp 1						#	STATIC Route
 redestribute static					#
 
@@ -37,6 +37,7 @@ debug eigrp fsm
 IPV4
 ====
 router ospf 1							# IPV4 OSPF, 1 = process id
+default-information originate			# (optional) default routen propagieren
 router-id 1.1.1.1						# set router id
 network 192.168.2.0 0.0.0.255 area 0  	# achtung wildcard statt subnet mask
 passive-interface g0/0					# set passiv interface (nicht propagieren)
@@ -53,8 +54,6 @@ ipv6 address fe80::1 link-local			# set link local address
 ipv6 ospf 1 area 0						# set ospf v3 on the interface
 
 
-Shows
-=====
 show ip protocols
 show ip route
 show ip ospf neighbor
