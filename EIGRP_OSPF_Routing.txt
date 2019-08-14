@@ -34,13 +34,27 @@ debug eigrp fsm
 =====================
 #	OSPF Routing 	#
 =====================
-
-router ospf 1							# 1 = process id
+IPV4
+====
+router ospf 1							# IPV4 OSPF, 1 = process id
 router-id 1.1.1.1						# set router id
 network 192.168.2.0 0.0.0.255 area 0  	# achtung wildcard statt subnet mask
-
 passive-interface g0/0					# set passiv interface (nicht propagieren)
 
+
+IPV6
+====
+ipv6 unicast-routing					# enable ipv6 routing
+ipv6 router ospf 1						# IPV6 OSPF
+router-id 1.1.1.1
+
+interface g0/0
+ipv6 address fe80::1 link-local			# set link local address
+ipv6 ospf 1 area 0						# set ospf v3 on the interface
+
+
+Shows
+=====
 show ip protocols
 show ip route
 show ip ospf neighbor
