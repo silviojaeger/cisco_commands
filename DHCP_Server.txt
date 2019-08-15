@@ -8,8 +8,8 @@ ip dhcp pool "POOL_NAME"
 network 192.168.1.0 255.255.255.0
 default-router 192.168.1.1			-Pool zu Router Adresse zuweisen
 dns-server 209.165.200.225
-domain-name ccna-lab.com
-lease 2						-Anzahl Tage der Gültigkeit der Adressen
+domain-name ccna-lab.com			-optional
+lease 2								-Anzahl Tage der Gültigkeit der Adressen optional
 exit
 
 Adressen aussschliessen

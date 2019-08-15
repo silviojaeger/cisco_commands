@@ -40,6 +40,7 @@ router ospf 1							# IPV4 OSPF, 1 = process id
 default-information originate			# (optional) default routen propagieren
 router-id 1.1.1.1						# set router id
 network 192.168.2.0 0.0.0.255 area 0  	# achtung wildcard statt subnet mask
+network 10.1.1.1 0.0.0.3 area0 			# Subnet von Tunnel selbst auch propagieren!!!
 passive-interface g0/0					# set passiv interface (nicht propagieren)
 
 

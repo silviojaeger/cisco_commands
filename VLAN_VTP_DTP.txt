@@ -12,10 +12,11 @@ end
 
 SWITCH - Access		-für die Ports Clients
 ================
-interface f0/1
+interface range f0/1-9
 switchport mode access						# Port in VLAN Modus setzen
 switchport access vlan 10					# Port an VLAN 10 zuweisen
 no switchport access vlan					# Port von VLAN entfernen
+
 	
 SWITCH - Trunk		-Mehrere VLAN über eine Leitung
 ==============

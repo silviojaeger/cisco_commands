@@ -58,4 +58,9 @@ end
 ! Configurieren auf jedem beteiligten Switch
 config t
 spanning-tree mode rapid-pvst
+spanning-tree vlan 10 priority 32768			#priorität aufvlan ändern
+
+spanning-tree vlan 10 priority 32768
+spanning-tree vlan 20 priority 32768
+
 exit
